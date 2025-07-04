@@ -3,7 +3,7 @@
 This repository contains the implementation of our **Self-Improving Multi-Agent Interactive QA Generation Pipeline**. The system automatically crawls, preprocesses, and generates high-quality, context-aware question–answer pairs from multi-page Arabic documents, iteratively refining its own performance through a closed feedback loop.
 
 ---
-![UI Screenshot](./qa_agent.png)
+![UI Screenshot](./QA.png)
 ## 🔍 Key Features
 
 - **End-to-End Automation**  
