@@ -1,9 +1,9 @@
 # Self-Improving Agentic Framework for Long-Context Arabic Document Understanding
 
-This repository contains the implementation of our **Self-Improving Multi-Agent Interactive QA Generation Pipeline**, described in “Self-Improving Agentic Framework for Long-Context Arabic Document Understanding” (IEEE MLSP 2025). The system automatically crawls, preprocesses, and generates high-quality, context-aware question–answer pairs from multi-page Arabic documents, iteratively refining its own performance through a closed feedback loop.
+This repository contains the implementation of our **Self-Improving Multi-Agent Interactive QA Generation Pipeline**. The system automatically crawls, preprocesses, and generates high-quality, context-aware question–answer pairs from multi-page Arabic documents, iteratively refining its own performance through a closed feedback loop.
 
 ---
-
+![UI Screenshot](./qa_agent.png)
 ## 🔍 Key Features
 
 - **End-to-End Automation**  
