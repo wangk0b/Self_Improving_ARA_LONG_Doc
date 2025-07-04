@@ -1,37 +1,54 @@
-# DocCrawler
+# Self-Improving Agentic Framework for Long-Context Arabic Document Understanding
 
-**DocCrawler** is a document acquisition module designed to automate the discovery, extraction, and downloading of unstructured documents from the web and other sources. It serves as the first stage in the document understanding pipeline.
+This repository contains the implementation of our **Self-Improving Multi-Agent Interactive QA Generation Pipeline**, described in “Self-Improving Agentic Framework for Long-Context Arabic Document Understanding” (IEEE MLSP 2025). The system automatically crawls, preprocesses, and generates high-quality, context-aware question–answer pairs from multi-page Arabic documents, iteratively refining its own performance through a closed feedback loop.
 
-## 🚀 Purpose
+---
 
-- Crawl public or private sources for documents (PDFs, HTML, DOCX, etc.)
-- Apply domain specific filtering rules.
-- Store documents in a structured format for downstream processing.
+## 🔍 Key Features
 
+- **End-to-End Automation**  
+  From web crawling to final QA pair validation—no human annotation required.
 
-## ☁️ Azure Blob Storage
+- **Multi-Agent Collaboration**  
+  Five specialized agents:
+  1. **Layout Agent**: Segments pages into logical elements (text, tables, figures).  
+  2. **Question Generator**: Drafts context-aware questions.  
+  3. **Answer Generator/Extractor**: Produces and extracts candidate answers.  
+  4. **Evaluation Agent**: Scores QA pairs and issues feedback.  
+  5. **Validator Agent**: Verifies evidence and finalizes QA pairs.
 
-Crawled documents are stored in a centralized Azure Blob Storage container.
+- **Self-Improvement Loop**  
+  Low-confidence outputs trigger automatic regeneration and model updates, progressively boosting difficulty and accuracy.
 
-### 📂 Structure
+- **Controllable Difficulty**  
+  Adjustable accuracy thresholds (No Gate / 50% / 25%) to generate data from easy recall to deep inference—ideal for curriculum learning.
 
-| Purpose        | Blob Path Prefix | Description                                |
-|----------------|------------------|--------------------------------------------|
-| Crawled Docs   | `raw-docs/`      | PDFs or HTML documents downloaded by crawlers |
-| Logs           | `logs/`          | Crawl reports, summaries, and errors       |
+- **Benchmark & Dataset**  
+  Includes **AraLongBench**, a large-scale, multi-page Arabic QA benchmark for long-context evaluation.
 
-### 🔐 Access Configuration
+---
 
-```env
-AZURE_STORAGE_ACCOUNT=multimodel
-AZURE_STORAGE_KEY=<your-storage-key>
-AZURE_CONTAINER_NAME=docunderstanding
-```
+## 📂 Project Structure
 
-### 🗂️ Example Upload Path
+```text
+.
+├── config.yaml                 # Pipeline configuration (input paths, thresholds, model names)
+├── multi_agent_interactive.py  # Main entrypoint for the self-improving QA pipeline
+├── agents/
+│   ├── layout_agent.py         # Page segmentation and layout parsing
+│   ├── question_agent.py       # Question drafting & refinement
+│   ├── answer_agent.py         # Answer generation and extraction
+│   ├── evaluation_agent.py     # QA scoring and feedback
+│   └── validator_agent.py      # Final QA validation
+├── data_acquisition/
+│   ├── crawler.py              # Web crawler and license‐compliance filtering
+│   ├── scraper.py              # HTML/PDF scraping utilities
+│   └── normalization.py        # Text cleaning, bidi handling, diacritics
+├── preprocessing/
+│   ├── ocr_agent.py            # OCR wrapper (Tesseract / custom models)
+│   └── chunker.py              # Document chunking with overlap
+├── benchmarks/
+│   └── AraLongBench/           # Benchmark definitions and evaluation scripts
+├── requirements.txt            # Python dependencies
+└── README.md                   # This file
 
-- Azure ML Job Output File: `outputs/my_crawled_file.pdf`  
-- Upload to: `raw-docs/outputs/my_crawled_file.pdf`  
-- Full URL:  https://multimodel.blob.core.windows.net/docunderstanding/raw-docs/outputs/my_crawled_file.pdf
-
-> ✅ Use timestamped or UUID-based filenames to avoid overwriting. Organize documents in subfolders when appropriate (e.g., `raw-docs/batch-001/`).
