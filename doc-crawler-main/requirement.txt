@@ -1,0 +1,11 @@
+selenium
+PyPDF2
+bs4
+pdf2image
+numpy
+redis
+pymupdf
+
+aiohttp
+crawlee
+playwright
