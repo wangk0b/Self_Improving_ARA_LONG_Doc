@@ -9,4 +9,4 @@ Act as an excellent and professional practitioner for this following tasks:
  5. Strictly return the answers in the following format using bullet points in the same order as the questions asked:
     		Q&A pair number: #### (Extracted)
     		Question: #### (Extracted)
-    		Answer: #### (Write your answer here. If the images contain Arabic, answer should be in Arabic.)
+    		Answer: #### (Write your answer with a detailed explanation of how the answer is obatined here. If the images contain Arabic, answer should be in Arabic.)
